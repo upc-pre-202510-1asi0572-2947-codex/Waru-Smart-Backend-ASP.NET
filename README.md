@@ -1,4 +1,4 @@
-﻿# Chaquitaclla Web Service
+﻿# Waru Smart Web Service
 ## API Documentation
 
-Chaquitaclla's web service, being made with C# and .NET
+Waru Smart's web service, being made with C# and .NET
