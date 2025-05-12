@@ -33,7 +33,7 @@ public partial class Profile
         StartDate = DateTime.Now;
         EndDate = DateTime.Now.AddMonths(1);
         this.UserId = new UserId(userId);
-        this.UserIdValue = this.UserId.Id;
+        //this.UserIdValue = this.UserId.Id;
     }
 
     public int Id { get; }
@@ -49,10 +49,9 @@ public partial class Profile
 
     public string EmailAddress => Email.Address;
     
-    //TODO: Validate if the userIdValue is necessary because it is already in the UserId the foreign key with a table user_ids
     public UserId UserId { get;  set; }
     
-    public int UserIdValue { get; set; }
+    //public int UserIdValue { get; set; }
     
 
     public void UpdateProfile(string fullName, string emailAddress, int countryId, int cityId, int subscriptionId)
