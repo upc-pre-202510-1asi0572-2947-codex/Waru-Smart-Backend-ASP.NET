@@ -67,6 +67,11 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
             .WithMany(c => c.Sowing) 
             .HasForeignKey(s => s.CropId);
         
+        builder.Entity<Sowing>()
+            .HasOne(s => s.User)
+            .WithMany(u => u.Sowings)
+            .HasForeignKey(s => s.UserId);
+        
         // Control Aggregate
         
         builder.Entity<Control>().HasKey(f => f.Id);
