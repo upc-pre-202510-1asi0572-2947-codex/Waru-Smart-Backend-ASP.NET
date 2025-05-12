@@ -1,6 +1,7 @@
 ﻿using WaruSmart.API.Crops.Domain.Model.Commands;
 using WaruSmart.API.Crops.Domain.Model.Entities;
 using WaruSmart.API.Crops.Domain.Model.ValueObjects;
+using WaruSmart.API.IAM.Domain.Model.Aggregates;
 
 namespace WaruSmart.API.Crops.Domain.Model.Aggregates;
 
@@ -16,6 +17,9 @@ public partial class Sowing
 
     public int CropId { get; set; }
     public Crop Crop { get; private set; }
+    
+    public int UserId { get; set; }
+    public User User { get; private set; }
 
     public ICollection<ProductsBySowing> ProductsBySowing { get; private set; } = [];
    
@@ -39,6 +43,7 @@ public partial class Sowing
         this.AreaLand = command.AreaLand;
         this.PhenologicalPhase = EPhenologicalPhase.Germination;
         this.CropId = command.CropId;
+        this.UserId = command.UserId;
     }
 
     public Sowing(UpdateSowingCommand command)
