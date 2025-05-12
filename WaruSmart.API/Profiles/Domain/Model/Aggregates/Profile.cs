@@ -1,4 +1,5 @@
-﻿using WaruSmart.API.Profiles.Domain.Model.Commands;
+﻿using WaruSmart.API.IAM.Domain.Model.Aggregates;
+using WaruSmart.API.Profiles.Domain.Model.Commands;
 using WaruSmart.API.Profiles.Domain.Model.ValueObjects;
 
 namespace WaruSmart.API.Profiles.Domain.Model.Aggregates;
@@ -22,7 +23,7 @@ public partial class Profile
         EndDate = endDate;
     }
 
-    public Profile(CreateProfileCommand command)
+    public Profile(CreateProfileCommand command, int userId)
     {
         Name = new PersonName(command.FirstName, command.LastName);
         Email = new EmailAddress(command.Email);
@@ -31,6 +32,8 @@ public partial class Profile
         CountryId = command.CountryId;
         StartDate = DateTime.Now;
         EndDate = DateTime.Now.AddMonths(1);
+        this.UserId = new UserId(userId);
+        this.UserIdValue = this.UserId.Id;
     }
 
     public int Id { get; }
@@ -45,6 +48,12 @@ public partial class Profile
     public string FullName => Name.FullName;
 
     public string EmailAddress => Email.Address;
+    
+    //TODO: Validate if the userIdValue is necessary because it is already in the UserId the foreign key with a table user_ids
+    public UserId UserId { get;  set; }
+    
+    public int UserIdValue { get; set; }
+    
 
     public void UpdateProfile(string fullName, string emailAddress, int countryId, int cityId, int subscriptionId)
     {
