@@ -151,6 +151,10 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         builder.Entity<User>().Property(u => u.Username).IsRequired();
         builder.Entity<User>().Property(u => u.PasswordHash).IsRequired();
         
+        builder.Entity<User>()
+            .HasMany(u => u.Sowings)
+            .WithOne(s => s.User)
+            .HasForeignKey(s => s.UserId);
         // Profiles Context
         builder.Entity<Profile>().HasKey(p => p.Id);
         builder.Entity<Profile>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
@@ -170,9 +174,11 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
                 e.Property(a => a.Address).HasColumnName("EmailAddress");
             });
         builder.Entity<Profile>().Property(p => p.SubscriptionId).IsRequired();
+        builder.Entity<Profile>().Property(p => p.UserIdValue).IsRequired();
         builder.Entity<Subscription>().Property(p=>p.Description).IsRequired();
         builder.Entity<Subscription>().Property(p=>p.Price).IsRequired();
         builder.Entity<Subscription>().Property(p=>p.Range).IsRequired();
+        
         
         
         // RELATIONSHIPS 
