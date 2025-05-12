@@ -30,4 +30,11 @@ public class IamContextFacade(
         var result = await userQueryService.Handle(getUserByIdQuery);
         return result?.Username ?? string.Empty;
     }
+
+    public async Task<int> FetchUserIdByUserId(int userId)
+    {
+        var getUserByIdQuery = new GetUserByIdQuery(userId);
+        var result = await userQueryService.Handle(getUserByIdQuery);
+        return result?.Id ?? 0;
+    }
 }
