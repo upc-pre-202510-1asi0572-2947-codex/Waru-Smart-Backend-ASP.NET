@@ -11,5 +11,7 @@ public interface ISowingQueryService
     
     Task<IEnumerable<Product>> Handle(GetProductsBySowingQuery query);
     Task<IEnumerable<Sowing>> Handle(GetAllSowingsQuery query);
+    
+    Task<IEnumerable<Sowing>> Handle(GetAllSowingsByUserIdQuery query);
 
 }
