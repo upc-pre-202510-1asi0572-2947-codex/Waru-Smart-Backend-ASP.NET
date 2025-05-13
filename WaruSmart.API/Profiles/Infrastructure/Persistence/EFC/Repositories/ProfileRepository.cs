@@ -16,11 +16,27 @@ public class ProfileRepository(AppDbContext context) : BaseRepository<Profile>(c
 
     public Task<Profile?> GetProfileByIdAsync(int profileId)
     {
-        return Context.Set<Profile>().FirstOrDefaultAsync(p => p.Id == profileId);
+        return Context.Set<Profile>()
+            .Include(p => p.UserId)
+            .FirstOrDefaultAsync(p => p.Id == profileId);
     }
     public async Task UpdateProfile(Profile profile)
     {
         Context.Set<Profile>().Update(profile);
         await Context.SaveChangesAsync();
+    }
+
+    public new async Task<IEnumerable<Profile>> ListAsync()
+    {
+        return await Context.Set<Profile>()
+            .Include(p => p.UserId)
+            .ToListAsync();
+    }
+
+    public Task<Profile?> GetProfileByUserIdAsync(int userId)
+    {
+        return Context.Set<Profile>()
+            .Include(p => p.UserId)
+            .FirstOrDefaultAsync(p => p.UserId.Id == userId);
     }
 }
