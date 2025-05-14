@@ -29,7 +29,7 @@ public partial class Crop
         this.Pests = new List<Pest>();
         this.Pests = new List<Pest>();*/
     }
-    public Crop(string name, string imageUrl,string description, List<Disease> diseases, List<Pest> pests, List<Care> cares)
+    public Crop(string name, string imageUrl,string description /*List<Disease> diseases, List<Pest> pests, List<Care> cares*/)
     {
         Name = name;
         ImageUrl = imageUrl;

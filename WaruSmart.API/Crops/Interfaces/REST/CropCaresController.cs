@@ -1,4 +1,4 @@
-﻿using System.Net.Mime;
+﻿/*using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
 using WaruSmart.API.Crops.Domain.Model.Queries;
 using WaruSmart.API.Crops.Domain.Services;
@@ -64,4 +64,4 @@ public class CropCaresController : ControllerBase
             return BadRequest(new { error = ex.Message });
         }
     }
-}
+}*/

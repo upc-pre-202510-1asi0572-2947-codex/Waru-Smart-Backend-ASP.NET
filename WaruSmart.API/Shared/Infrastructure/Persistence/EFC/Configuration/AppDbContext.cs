@@ -96,22 +96,22 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         builder.Entity<ProductsBySowing>().Property(f => f.UseDate).IsRequired();
         
         //Disease Entity
-        builder.Entity<Disease>().HasKey(f => f.Id);
+        /*builder.Entity<Disease>().HasKey(f => f.Id);
         builder.Entity<Disease>().Property(f => f.Id).ValueGeneratedOnAdd();
         builder.Entity<Disease>().Property(f => f.Name).IsRequired();
-        builder.Entity<Disease>().Property(f => f.Description).IsRequired();
+        builder.Entity<Disease>().Property(f => f.Description).IsRequired();*/
         
         //Pest Entity
-        builder.Entity<Pest>().HasKey(f => f.Id);
+        /*builder.Entity<Pest>().HasKey(f => f.Id);
         builder.Entity<Pest>().Property(f => f.Id).ValueGeneratedOnAdd();
         builder.Entity<Pest>().Property(f => f.Name).IsRequired();
-        builder.Entity<Pest>().Property(f => f.Description).IsRequired();
+        builder.Entity<Pest>().Property(f => f.Description).IsRequired();*/
         
         //Care Entity
-        builder.Entity<Care>().HasKey(c => c.Id);
+        /*builder.Entity<Care>().HasKey(c => c.Id);
         builder.Entity<Care>().Property(c => c.Id).ValueGeneratedOnAdd();
         builder.Entity<Care>().Property(c => c.Suggestion).IsRequired();
-        builder.Entity<Care>().Property(c => c.Date).IsRequired();
+        builder.Entity<Care>().Property(c => c.Date).IsRequired();*/
         
         // Control Entity
         builder.Entity<Control>().HasKey(f => f.Id);

@@ -1,4 +1,4 @@
-﻿using WaruSmart.API.Crops.Domain.Model.Entities;
+﻿/*using WaruSmart.API.Crops.Domain.Model.Entities;
 using WaruSmart.API.Crops.Interfaces.REST.Resources;
 
 namespace WaruSmart.API.Crops.Interfaces.REST.Transform;
@@ -9,4 +9,4 @@ public class CareResourceFromEntityAssembler
     {
         return new CareResource(entity.Id, entity.Suggestion, entity.Date);
     }
-}
+}*/

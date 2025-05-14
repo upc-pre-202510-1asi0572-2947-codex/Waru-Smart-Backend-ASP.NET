@@ -1,4 +1,4 @@
-﻿using WaruSmart.API.Crops.Domain.Model.Aggregates;
+﻿/*using WaruSmart.API.Crops.Domain.Model.Aggregates;
 using WaruSmart.API.Crops.Domain.Model.Commands;
 
 namespace WaruSmart.API.Crops.Domain.Model.Entities;
@@ -30,4 +30,4 @@ public class Care
     }
 
     
-}
+}*/
