@@ -54,6 +54,8 @@
       <Folder Include="Forum\Domain\" />
       <Folder Include="Forum\Infrastructure\" />
       <Folder Include="Forum\Interfaces\" />
+      <Folder Include="IAM\Application\External\InboundServices\" />
+      <Folder Include="Profiles\Application\External\" />
     </ItemGroup>
 
 </Project>

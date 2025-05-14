@@ -19,9 +19,9 @@ public class ProfilesContextFacade(IProfileCommandService profileCommandService,
      * <returns>The profile id</returns>
      *
      */
-    public async Task<int> CreateProfile(string firstName, string lastName, string email, int cityId, int subscriptionId, int countryId)
+    public async Task<int> CreateProfile(string firstName, string lastName, string email, int cityId, int subscriptionId, int countryId, int userId)
     {
-        var createProfileCommand = new CreateProfileCommand(firstName, lastName, email, cityId, subscriptionId, countryId);
+        var createProfileCommand = new CreateProfileCommand(firstName, lastName, email, cityId, subscriptionId, countryId,  userId);
         var profile = await profileCommandService.Handle(createProfileCommand);
         return profile?.Id ?? 0;
     }

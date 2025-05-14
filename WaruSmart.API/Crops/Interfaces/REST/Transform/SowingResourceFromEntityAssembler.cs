@@ -14,7 +14,9 @@ public static class SowingResourceFromEntityAssembler
             entity.Status,
             entity.PhenologicalPhase,
             entity.CropId,
-            entity.PhenologicalPhase.ToString());
+            entity.PhenologicalPhase.ToString(),
+            entity.UserId
+            );
     
 }
 }

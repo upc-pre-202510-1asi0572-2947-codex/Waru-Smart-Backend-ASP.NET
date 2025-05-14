@@ -131,6 +131,9 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<ISowingRepository, SowingRepository>();
 builder.Services.AddScoped<ISowingCommandService, SowingCommandService>();
 builder.Services.AddScoped<ISowingQueryService, SowingQueryService>();
+builder.Services.AddScoped<IDeviceRepository, DeviceRepository>();
+builder.Services.AddScoped<IDeviceCommandService, DeviceCommandService>();
+builder.Services.AddScoped<IDeviceQueryService, DeviceQueryService>();
 
 //Controls Bounded Context Dependency Injections
 
