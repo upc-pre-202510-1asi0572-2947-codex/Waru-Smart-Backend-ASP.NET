@@ -24,6 +24,8 @@ public partial class Sowing
     public ICollection<ProductsBySowing> ProductsBySowing { get; private set; } = [];
    
     public ICollection<Control> Controls { get; set; }
+    
+    public ICollection<Device> Devices { get; set; }
 
     
     public Sowing()
