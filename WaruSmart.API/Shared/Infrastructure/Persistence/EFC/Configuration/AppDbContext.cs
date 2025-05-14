@@ -101,22 +101,22 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         builder.Entity<ProductsBySowing>().Property(f => f.UseDate).IsRequired();
         
         //Disease Entity
-        builder.Entity<Disease>().HasKey(f => f.Id);
+        /*builder.Entity<Disease>().HasKey(f => f.Id);
         builder.Entity<Disease>().Property(f => f.Id).ValueGeneratedOnAdd();
         builder.Entity<Disease>().Property(f => f.Name).IsRequired();
-        builder.Entity<Disease>().Property(f => f.Description).IsRequired();
+        builder.Entity<Disease>().Property(f => f.Description).IsRequired();*/
         
         //Pest Entity
-        builder.Entity<Pest>().HasKey(f => f.Id);
+        /*builder.Entity<Pest>().HasKey(f => f.Id);
         builder.Entity<Pest>().Property(f => f.Id).ValueGeneratedOnAdd();
         builder.Entity<Pest>().Property(f => f.Name).IsRequired();
-        builder.Entity<Pest>().Property(f => f.Description).IsRequired();
+        builder.Entity<Pest>().Property(f => f.Description).IsRequired();*/
         
         //Care Entity
-        builder.Entity<Care>().HasKey(c => c.Id);
+        /*builder.Entity<Care>().HasKey(c => c.Id);
         builder.Entity<Care>().Property(c => c.Id).ValueGeneratedOnAdd();
         builder.Entity<Care>().Property(c => c.Suggestion).IsRequired();
-        builder.Entity<Care>().Property(c => c.Date).IsRequired();
+        builder.Entity<Care>().Property(c => c.Date).IsRequired();*/
         
         // Control Entity
         builder.Entity<Control>().HasKey(f => f.Id);
@@ -174,32 +174,31 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
                 e.Property(a => a.Address).HasColumnName("EmailAddress");
             });
         builder.Entity<Profile>().Property(p => p.SubscriptionId).IsRequired();
-        //builder.Entity<Profile>().Property(p => p.UserIdValue).IsRequired();
         builder.Entity<Subscription>().Property(p=>p.Description).IsRequired();
         builder.Entity<Subscription>().Property(p=>p.Price).IsRequired();
         builder.Entity<Subscription>().Property(p=>p.Range).IsRequired();
         
         
-        
         // RELATIONSHIPS 
         
         //Many to Many relationship between Pest and Crop
-        builder.Entity<Crop>()
+        /*builder.Entity<Crop>()
             .HasMany(c => c.Pests)
             .WithMany(p => p.Crops)
-            .UsingEntity(j => j.ToTable("CropPests"));
+            .UsingEntity(j => j.ToTable("CropPests"));*/
         
         // Many to Many relationship between Disease and Crop
-        builder.Entity<Crop>()
+        /*builder.Entity<Crop>()
             .HasMany(c => c.Diseases)
             .WithMany(d => d.Crops)
             .UsingEntity(j => j.ToTable("CropDiseases"));
 
         // Many to Many relationship between Care and Crop
-        builder.Entity<Crop>()
+        /*builder.Entity<Crop>()
             .HasMany(c => c.Cares)
             .WithMany(ca => ca.Crops)
             .UsingEntity(j => j.ToTable("CropCares"));
+        builder.UseSnakeCaseWithPluralizedTableNamingConvention();*/
         builder.UseSnakeCaseWithPluralizedTableNamingConvention();
         
         // Relationship a Sowing can have many Devices but a Device is just for one Sowing

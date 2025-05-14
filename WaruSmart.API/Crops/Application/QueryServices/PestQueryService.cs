@@ -1,3 +1,4 @@
+/*
 using WaruSmart.API.Crops.Domain.Model.Entities;
 using WaruSmart.API.Crops.Domain.Model.Queries;
 using WaruSmart.API.Crops.Domain.Repositories;
@@ -22,3 +23,4 @@ public class PestQueryService(IPestRepository pestRepository)
         return pestRepository.GetPestByCropIdQuery(query.CropId);
     }
 }
+*/

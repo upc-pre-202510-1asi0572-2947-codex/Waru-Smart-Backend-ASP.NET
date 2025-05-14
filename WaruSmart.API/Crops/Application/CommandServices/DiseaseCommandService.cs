@@ -1,4 +1,4 @@
-using WaruSmart.API.Crops.Domain.Model.Aggregates;
+/*using WaruSmart.API.Crops.Domain.Model.Aggregates;
 using System;
 using System.Threading.Tasks;
 using WaruSmart.API.Crops.Domain.Model.Commands;
@@ -32,4 +32,4 @@ namespace WaruSmart.API.Crops.Application.CommandServices
             }
         }
     }
-}
+}*/

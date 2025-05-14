@@ -1,4 +1,4 @@
-using WaruSmart.API.Crops.Domain.Model.Commands;
+/*using WaruSmart.API.Crops.Domain.Model.Commands;
 using WaruSmart.API.Crops.Domain.Model.Entities;
 using WaruSmart.API.Crops.Domain.Repositories;
 using WaruSmart.API.Crops.Domain.Services;
@@ -29,4 +29,4 @@ public class PestCommandService(IPestRepository pestRepository, IUnitOfWork unit
             throw new Exception("An error occurred while trying to add the new Pest", e);
         }
     }
-}
+}*/

@@ -1,4 +1,5 @@
-﻿using WaruSmart.API.Crops.Domain.Model.Entities;
+﻿/*
+using WaruSmart.API.Crops.Domain.Model.Entities;
 using WaruSmart.API.Crops.Domain.Model.Queries;
 using WaruSmart.API.Crops.Domain.Repositories;
 using WaruSmart.API.Crops.Domain.Services;
@@ -18,4 +19,5 @@ public class CareQueryService(ICareRepository careRepository)
         return careRepository.GetCaresByCropIdQuery(query.CropId);
     }
 }
+*/
 

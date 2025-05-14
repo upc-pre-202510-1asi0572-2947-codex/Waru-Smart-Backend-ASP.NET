@@ -1,3 +1,4 @@
+/*
 using WaruSmart.API.Crops.Domain.Model.Entities;
 using WaruSmart.API.Crops.Domain.Model.Queries;
 using WaruSmart.API.Crops.Domain.Repositories;
@@ -23,3 +24,4 @@ public class DiseaseQueryService(IDiseaseRepository diseaseRepository)
         return diseaseRepository.GetDiseasesByCropId(query.CropId);
     }
 }
+*/

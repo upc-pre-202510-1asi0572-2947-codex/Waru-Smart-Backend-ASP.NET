@@ -21,17 +21,17 @@ public class CropRepository : BaseRepository<Crop>, ICropRepository
     public async Task<IEnumerable<Crop>> FindAllAsync()
     {
         return await Context.Set<Crop>()
-            .Include(c => c.Diseases)
+            /*.Include(c => c.Diseases)
             .Include(c => c.Pests)
-            .Include(c => c.Cares)
+            .Include(c => c.Cares)*/
             .ToListAsync();
     }
     public new async Task<Crop?> FindByIdAsync(int id)
     {
         return await Context.Set<Crop>()
-            .Include(c => c.Diseases)
+            /*.Include(c => c.Diseases)
             .Include(c => c.Pests)
-            .Include(c => c.Cares)
+            .Include(c => c.Cares)*/
             .SingleOrDefaultAsync(c => c.Id == id);
     }
 }

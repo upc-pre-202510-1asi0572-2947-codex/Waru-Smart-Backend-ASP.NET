@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿/*using Microsoft.EntityFrameworkCore;
 using WaruSmart.API.Crops.Domain.Model.Aggregates;
 using WaruSmart.API.Crops.Domain.Model.Entities;
 using WaruSmart.API.Crops.Domain.Repositories;
@@ -21,4 +21,4 @@ public class CareRepository: BaseRepository<Care>, ICareRepository
 
         return crop?.Cares;
     }
-}
+}*/
