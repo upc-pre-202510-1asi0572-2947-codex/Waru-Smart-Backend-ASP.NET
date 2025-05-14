@@ -31,4 +31,26 @@ public class DeviceCommandService(IDeviceRepository deviceRepository, IUnitOfWor
         }
         
     }
+
+    public Task<Device> Handle(UpdateStatusDeviceCommand command, int deviceId)
+    {
+        var device = deviceRepository.FindByIdAsync(deviceId);
+        if (device == null)
+        {
+            throw new Exception("Device not found");
+        }
+        try
+        {
+            device.Result?.UpdateStatus(command);
+            if (device.Result == null) throw new Exception("Device not found");
+            deviceRepository.Update(device.Result);
+            unitOfWork.CompleteAsync();
+            return Task.FromResult(device.Result);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }

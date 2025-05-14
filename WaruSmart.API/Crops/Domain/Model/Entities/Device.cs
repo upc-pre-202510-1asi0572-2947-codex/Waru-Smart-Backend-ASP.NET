@@ -47,9 +47,9 @@ public class Device
         Sowing = sowing;
     }
 
-    public void UpdateStatus(string status)
+    public void UpdateStatus(UpdateStatusDeviceCommand command)
     {
-        Status = status;
+        Status = command.Status;
     }
 
     public void UpdateLastSyncDate(DateTime syncDate)

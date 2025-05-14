@@ -6,4 +6,6 @@ namespace WaruSmart.API.Crops.Domain.Services;
 public interface IDeviceCommandService
 {
     Task<Device?> Handle(CreateDeviceCommand command);
+    
+    Task<Device> Handle(UpdateStatusDeviceCommand command, int deviceId);
 }

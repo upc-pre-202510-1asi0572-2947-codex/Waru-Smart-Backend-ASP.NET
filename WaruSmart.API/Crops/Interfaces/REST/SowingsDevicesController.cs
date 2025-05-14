@@ -76,4 +76,24 @@ public class SowingsDevicesController : ControllerBase
         var result = GeneralInformationDeviceResourceFromListEntitiesAssembler.ToResourceFromEntity(devices);
         return Ok(result);
     }
+    
+    [HttpPut("{deviceId}/devices")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> UpdateDevice( int deviceId, [FromBody] UpdateStatusDeviceResource resource)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        var command = UpdateStatusDeviceCommandFromResourceAssembler.ToCommandFromResource(resource);
+        var device = await deviceCommandService.Handle(command, deviceId);
+        
+
+        var result = DeviceResourceFromEntityAssembler.ToResourceFromEntity(device);
+        
+        return Ok(result);
+    }
 }
