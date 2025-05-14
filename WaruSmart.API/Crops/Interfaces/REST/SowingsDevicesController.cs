@@ -61,4 +61,19 @@ public class SowingsDevicesController : ControllerBase
         
         return CreatedAtAction(nameof(GetAllDevicesBySowingId), new { sowingId }, result);
     }
+    
+    [HttpGet("{sowingId}/devices/general-information")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetGeneralInformation(int sowingId)
+    {
+        var devices = await deviceQueryService.Handle(new GetAllDevicesBySowingId(sowingId));
+        if (!devices.Any())
+        {
+            return NotFound();
+        }
+
+        var result = GeneralInformationDeviceResourceFromListEntitiesAssembler.ToResourceFromEntity(devices);
+        return Ok(result);
+    }
 }

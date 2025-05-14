@@ -10,7 +10,7 @@ public class Device
     public string Name { get; private set; }
     public ESensorType SensorType { get;  set; }
     public string DeviceId { get; private set; }
-    public string Status { get; private set; }
+    public string Status { get; private set; } //TODO: This should be an enum
     public DateTime? LastSyncDate { get; private set; }
     public string Location { get; private set; }
     
