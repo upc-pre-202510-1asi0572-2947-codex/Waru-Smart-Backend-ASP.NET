@@ -201,6 +201,12 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
             .WithMany(ca => ca.Crops)
             .UsingEntity(j => j.ToTable("CropCares"));
         builder.UseSnakeCaseWithPluralizedTableNamingConvention();
+        
+        // Relationship a Sowing can have many Devices but a Device is just for one Sowing
+        builder.Entity<Sowing>()
+            .HasMany(s => s.Devices)
+            .WithOne(d => d.Sowing)
+            .HasForeignKey(d => d.SowingId);
     }
 }
         
