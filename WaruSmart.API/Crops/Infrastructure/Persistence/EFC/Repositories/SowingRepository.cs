@@ -38,4 +38,14 @@ public class SowingRepository : BaseRepository<Sowing>, ISowingRepository
     {
         return await Context.Set<Sowing>().ToListAsync();
     }
+    
+    public async Task<Sowing?> FindSowingByIdAsync(int id)
+    {
+        return await Context.Set<Sowing>().FindAsync(id);
+    }
+    
+    public async Task<IEnumerable<Sowing>> FindAllByUserIdAsync(int userId)
+    {
+        return await Context.Set<Sowing>().Where(s => s.UserId == userId).ToListAsync();
+    }
 }

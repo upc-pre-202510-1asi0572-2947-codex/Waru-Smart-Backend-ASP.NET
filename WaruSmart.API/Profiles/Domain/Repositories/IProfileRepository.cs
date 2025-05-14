@@ -9,4 +9,8 @@ public interface IProfileRepository : IBaseRepository<Profile>
     Task<Profile?> FindProfileByEmailAsync(EmailAddress email);
     Task<Profile?> GetProfileByIdAsync(int profileId);
     Task UpdateProfile(Profile profile);
+
+    new Task<IEnumerable<Profile>> ListAsync();
+    
+    Task<Profile?> GetProfileByUserIdAsync(int userId);
 }

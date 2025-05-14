@@ -140,5 +140,14 @@ public class SowingsController(ISowingCommandService sowingCommandService,
         }
         return Ok("Phenological phase updated successfully");
     }
+    
+    [HttpGet("{userId}/user")]
+    public async Task<ActionResult> GetSowingsByUserId(int userId)
+    {
+        var getSowingsByUserIdQuery = new GetAllSowingsByUserIdQuery(userId);
+        var result = await sowingQueryService.Handle(getSowingsByUserIdQuery);
+        var resources = result.Select(SowingResourceFromEntityAssembler.ToResourceFromEntity);
+        return Ok(resources);
+    }
  
 }

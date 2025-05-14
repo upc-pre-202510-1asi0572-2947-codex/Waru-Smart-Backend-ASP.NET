@@ -15,10 +15,10 @@ public class ExternalProfileService(IProfilesContextFacade profilesContextFacade
 
     public async Task<ProfileId?> CreateProfile(string firstName, string lastName, string email, int cityId,
         int subscriptionId,
-        int countryId)
+        int countryId, int userId)
     {
         var profileId =
-            await profilesContextFacade.CreateProfile(firstName, lastName, email, cityId, subscriptionId, countryId);
+            await profilesContextFacade.CreateProfile(firstName, lastName, email, cityId, subscriptionId, countryId, userId);
         if (profileId == 0) return await Task.FromResult<ProfileId?>(null);
         return new ProfileId(profileId);
     }

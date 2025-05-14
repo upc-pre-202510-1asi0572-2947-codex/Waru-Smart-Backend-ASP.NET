@@ -1,3 +1,3 @@
-﻿namespace WaruSmart.API.Crops.Domain.Model.Commands;
+﻿/*namespace WaruSmart.API.Crops.Domain.Model.Commands;
 
-public record CreateCareCommand(string suggestion, DateTime date);
+public record CreateCareCommand(string suggestion, DateTime date);*/

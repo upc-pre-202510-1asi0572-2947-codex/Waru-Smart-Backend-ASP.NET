@@ -1,4 +1,5 @@
-﻿using WaruSmart.API.Crops.Domain.Model.Commands;
+﻿/*
+using WaruSmart.API.Crops.Domain.Model.Commands;
 using WaruSmart.API.Crops.Interfaces.REST.Resources;
 
 namespace WaruSmart.API.Crops.Interfaces.REST.Transform;
@@ -10,4 +11,5 @@ public static class CreateCareSourceCommandFromResourceAssembler
         return new CreateCareCommand(resource.Suggestion, resource.Date);
     }
 }
+*/
 

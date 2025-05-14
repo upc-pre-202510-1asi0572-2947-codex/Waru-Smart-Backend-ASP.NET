@@ -1,4 +1,5 @@
-﻿using WaruSmart.API.Crops.Domain.Model.Commands;
+﻿/*
+using WaruSmart.API.Crops.Domain.Model.Commands;
 using WaruSmart.API.Crops.Domain.Model.Entities;
 using WaruSmart.API.Crops.Domain.Repositories;
 using WaruSmart.API.Crops.Domain.Services;
@@ -28,3 +29,4 @@ public class CareCommandService(ICareRepository careRepository, IUnitOfWork unit
         }
     }
 }
+*/
