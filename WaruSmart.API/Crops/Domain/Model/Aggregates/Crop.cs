@@ -12,10 +12,10 @@ public partial class Crop
     
     public string ImageUrl { get; private set; }
 
-    public List<Disease> Diseases { get; private set; }
+    /*public List<Disease> Diseases { get; private set; }
 
     public List<Pest> Pests { get; private set; } 
-    public List<Care> Cares  { get; private set; } 
+    public List<Care> Cares  { get; private set; } */
     
     public ICollection<Sowing> Sowing { get; set; }
 
@@ -25,27 +25,27 @@ public partial class Crop
         this.Name = string.Empty;
         this.Description = string.Empty;
         this.ImageUrl = string.Empty;
-        this.Diseases = new List<Disease>(); 
+        /*this.Diseases = new List<Disease>(); 
         this.Pests = new List<Pest>();
-        this.Pests = new List<Pest>();
+        this.Pests = new List<Pest>();*/
     }
     public Crop(string name, string imageUrl,string description, List<Disease> diseases, List<Pest> pests, List<Care> cares)
     {
         Name = name;
         ImageUrl = imageUrl;
         Description = description;
-        Diseases = diseases;
+        /*Diseases = diseases;
         Pests = pests;
-        Cares = cares;
+        Cares = cares;*/
     }
     public Crop(CreateCropCommand command)
     {
         this.Name = command.Name;
         this.Description = command.Description;
         this.ImageUrl = command.ImageUrl;
-        this.Diseases = new List<Disease>();
+        /*this.Diseases = new List<Disease>();
         this.Pests = new List<Pest>();
-        this.Cares= new List<Care>();
+        this.Cares= new List<Care>();*/
     }
 
     public Crop(UpdateCropCommand command)

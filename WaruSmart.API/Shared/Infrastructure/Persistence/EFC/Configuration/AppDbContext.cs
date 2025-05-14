@@ -173,23 +173,23 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         // RELATIONSHIPS 
         
         //Many to Many relationship between Pest and Crop
-        builder.Entity<Crop>()
+        /*builder.Entity<Crop>()
             .HasMany(c => c.Pests)
             .WithMany(p => p.Crops)
-            .UsingEntity(j => j.ToTable("CropPests"));
+            .UsingEntity(j => j.ToTable("CropPests"));*/
         
         // Many to Many relationship between Disease and Crop
-        builder.Entity<Crop>()
+        /*builder.Entity<Crop>()
             .HasMany(c => c.Diseases)
             .WithMany(d => d.Crops)
-            .UsingEntity(j => j.ToTable("CropDiseases"));
+            .UsingEntity(j => j.ToTable("CropDiseases"));*/
 
         // Many to Many relationship between Care and Crop
-        builder.Entity<Crop>()
+        /*builder.Entity<Crop>()
             .HasMany(c => c.Cares)
             .WithMany(ca => ca.Crops)
             .UsingEntity(j => j.ToTable("CropCares"));
-        builder.UseSnakeCaseWithPluralizedTableNamingConvention();
+        builder.UseSnakeCaseWithPluralizedTableNamingConvention();*/
     }
 }
         
