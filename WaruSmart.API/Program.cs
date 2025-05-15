@@ -69,14 +69,14 @@ builder.Services.AddSwaggerGen(
         c.SwaggerDoc("v1",
             new OpenApiInfo
             {
-                Title = "WaruSmart.APIrror404.API",
+                Title = "WaruSmart.CODEX.API",
                 Version = "v1",
-                Description = "WaruSmart Error 404 Platform API",
-                TermsOfService = new Uri("https://github.com/upc-pre-202401-si730-ws53-Error-404/Web-Services"),
+                Description = "WaruSmart Codex Platform API",
+                TermsOfService = new Uri("https://github.com/upc-pre-202510-1asi0572-2947-codex"),
                 Contact = new OpenApiContact
                 {
-                    Name = "Error 404 development team",
-                    Email = "u202124343@upc."
+                    Name = "CODEX development team",
+                    Email = ""
                 },
                 License = new OpenApiLicense
                 {
