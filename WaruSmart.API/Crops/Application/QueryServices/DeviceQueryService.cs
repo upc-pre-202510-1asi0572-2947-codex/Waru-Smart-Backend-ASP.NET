@@ -11,4 +11,9 @@ public class DeviceQueryService(IDeviceRepository deviceRepository): IDeviceQuer
     {
         return await deviceRepository.FindBySowingIdAsync(query.sowingId);
     }
+
+    public async Task<IEnumerable<Device>> Handle(GetAllDevicesQuery query)
+    {
+        return await deviceRepository.FindAllAsync();
+    }
 }

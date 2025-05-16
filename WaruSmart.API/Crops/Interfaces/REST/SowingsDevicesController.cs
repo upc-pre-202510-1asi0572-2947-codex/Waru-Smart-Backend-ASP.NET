@@ -96,4 +96,23 @@ public class SowingsDevicesController : ControllerBase
         
         return Ok(result);
     }
+    
+    /*
+     * Function to get all devices
+     */
+    [HttpGet("devices")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetAllDevices()
+    {
+        var devices = await deviceQueryService.Handle(new GetAllDevicesQuery());
+        if (!devices.Any())
+        {
+            return NotFound();
+        }
+        
+        var result = devices.Select(DeviceResourceFromEntityAssembler.ToResourceFromEntity);
+        
+        return Ok(result);
+    }
 }

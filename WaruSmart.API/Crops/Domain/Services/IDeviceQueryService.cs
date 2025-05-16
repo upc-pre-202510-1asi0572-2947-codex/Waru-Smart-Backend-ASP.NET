@@ -6,4 +6,6 @@ namespace WaruSmart.API.Crops.Domain.Services;
 public interface IDeviceQueryService
 {
     Task<IEnumerable<Device>> Handle(GetAllDevicesBySowingId query);
+
+    Task<IEnumerable<Device>> Handle(GetAllDevicesQuery query);
 }
