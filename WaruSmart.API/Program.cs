@@ -1,8 +1,3 @@
-using WaruSmart.API.Crops.Application.CommandServices;
-using  WaruSmart.API.Crops.Application.QueryServices;
-using  WaruSmart.API.Crops.Domain.Repositories;
-using  WaruSmart.API.Crops.Domain.Services;
-using  WaruSmart.API.Crops.Infrastructure.Persistence.EFC.Repositories;
 using WaruSmart.API.Forum.Application.CommandServices;
 using WaruSmart.API.Forum.Application.QueryService;
 using WaruSmart.API.Forum.Domain.Repositories;
@@ -31,6 +26,11 @@ using  WaruSmart.API.Shared.Infrastructure.Persistence.EFC.Configuration;
 using  WaruSmart.API.Shared.Infrastructure.Persistence.EFC.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using WaruSmart.API.OperationMonitoring.Application.CommandServices;
+using WaruSmart.API.OperationMonitoring.Application.QueryServices;
+using WaruSmart.API.OperationMonitoring.Domain.Repositories;
+using WaruSmart.API.OperationMonitoring.Domain.Services;
+using WaruSmart.API.OperationMonitoring.Infrastructure.Persistence.EFC.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
