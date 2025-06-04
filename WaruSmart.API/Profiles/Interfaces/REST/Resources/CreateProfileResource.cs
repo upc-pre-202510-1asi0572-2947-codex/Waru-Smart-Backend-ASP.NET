@@ -2,4 +2,4 @@
 
 public record CreateProfileResource(string FirstName, string LastName,
     string Email, int CityId,
-    int SubscriptionId, int CountryId, int UserId);
+    int SubscriptionId, int CountryId, int UserId, string Role);
