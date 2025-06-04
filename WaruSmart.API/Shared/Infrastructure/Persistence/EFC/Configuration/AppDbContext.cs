@@ -174,6 +174,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
                 e.Property(a => a.Address).HasColumnName("EmailAddress");
             });
         builder.Entity<Profile>().Property(p => p.SubscriptionId).IsRequired();
+        builder.Entity<Profile>().Property(p => p.ERole).HasConversion<string>().IsRequired();
         builder.Entity<Subscription>().Property(p=>p.Description).IsRequired();
         builder.Entity<Subscription>().Property(p=>p.Price).IsRequired();
         builder.Entity<Subscription>().Property(p=>p.Range).IsRequired();
