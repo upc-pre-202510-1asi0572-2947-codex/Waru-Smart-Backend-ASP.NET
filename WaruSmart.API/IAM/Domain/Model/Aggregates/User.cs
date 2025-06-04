@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
 using Mysqlx.Datatypes;
-using WaruSmart.API.Crops.Domain.Model.Aggregates;
 using WaruSmart.API.IAM.Domain.Model.ValueObjects;
+using WaruSmart.API.OperationMonitoring.Domain.Model.Aggregates;
 
 namespace WaruSmart.API.IAM.Domain.Model.Aggregates;
 

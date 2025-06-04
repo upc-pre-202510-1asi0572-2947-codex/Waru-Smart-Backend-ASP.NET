@@ -1,0 +1,31 @@
+using WaruSmart.API.OperationMonitoring.Domain.Model.Commands;
+using WaruSmart.API.OperationMonitoring.Domain.Model.ValueObjects;
+
+namespace WaruSmart.API.OperationMonitoring.Domain.Model.Entities;
+
+public class Product
+{
+    public int Id { get; set; }
+    public string Name{get;  set; }
+    public EProductType Type { get;  set; }
+    
+    public ICollection<ProductsBySowing> ProductsBySowing { get; private set; } = [];
+
+    private Product()
+    {
+        
+    }
+    
+    public Product(CreateProductCommand command)
+    {
+        Name = command.Name;
+        Type = command.Type;
+    }
+    public Product(string name, EProductType type)
+    {
+        Name = name;
+        Type = type;
+    }
+
+    
+}
