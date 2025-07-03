@@ -31,6 +31,10 @@ using WaruSmart.API.OperationMonitoring.Application.QueryServices;
 using WaruSmart.API.OperationMonitoring.Domain.Repositories;
 using WaruSmart.API.OperationMonitoring.Domain.Services;
 using WaruSmart.API.OperationMonitoring.Infrastructure.Persistence.EFC.Repositories;
+using WaruSmart.API.ResourcesManagement.Application.InboundServices;
+using WaruSmart.API.ResourcesManagement.Domain.Repositories;
+using WaruSmart.API.ResourcesManagement.Domain.Services;
+using WaruSmart.API.ResourcesManagement.Infrastructure.Persistence.EFC;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -198,7 +202,8 @@ builder.Services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
 
 builder.Services.AddScoped<IProductsBySowingRepository, ProductsBySowingRepository>();
 
-
+builder.Services.AddScoped<IIoTDataRepository, IoTDataRepository>();
+builder.Services.AddScoped<IFogSyncService, FogSyncService>();
 
 var app = builder.Build();
 

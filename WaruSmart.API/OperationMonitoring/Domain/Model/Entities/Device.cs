@@ -11,12 +11,18 @@ public class Device
     public ESensorType SensorType { get;  set; }
     public string DeviceId { get; private set; }
     public string Status { get; private set; } //TODO: This should be an enum
-    public DateTime? LastSyncDate { get; private set; }
+    public DateTime? LastSyncDate { get; set; }
     public string Location { get; private set; }
     
     public Sowing Sowing { get; private set; }
     
     public int SowingId { get; private set; }
+    
+    public double? Humidity { get; set; }
+    
+    public double? Temprature { get; set; }
+    
+    public double? SoilMoisture { get; set; }
 
     public Device(string name, string deviceId, string location)
     {
@@ -37,7 +43,7 @@ public class Device
 
     public Device(CreateDeviceCommand command, Sowing sowing)
     {
-        DeviceId = Guid.NewGuid().ToString();
+        DeviceId = "waru-smart-001";
         Name = string.Concat(command.SensorType, '-', DeviceId );
         SensorType = (ESensorType)Enum.Parse(typeof(ESensorType), command.SensorType);
         Location = command.location;
@@ -45,6 +51,9 @@ public class Device
         LastSyncDate = DateTime.Now;
         SowingId = command.sowingId;
         Sowing = sowing;
+        Humidity = 0;
+        Temprature = 0;
+        SoilMoisture = 0;
     }
 
     public void UpdateStatus(UpdateStatusDeviceCommand command)

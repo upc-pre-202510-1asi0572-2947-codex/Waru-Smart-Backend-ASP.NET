@@ -144,5 +144,9 @@ public class SowingsController(ISowingCommandService sowingCommandService,
         var resources = result.Select(SowingResourceFromEntityAssembler.ToResourceFromEntity);
         return Ok(resources);
     }
+    
+    /*
+     * Endpoint to get all sowings by a user with role of 'Cooperative'
+     */
  
 }
