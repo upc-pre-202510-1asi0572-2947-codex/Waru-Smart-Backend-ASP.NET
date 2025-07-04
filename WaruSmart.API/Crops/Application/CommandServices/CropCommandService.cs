@@ -11,27 +11,18 @@ public class CropCommandService : ICropCommandService
     private readonly ISowingRepository sowingRepository;
     private readonly ICropRepository cropRepository;
     private readonly IUnitOfWork unitOfWork;
-    /*private readonly IDiseaseRepository diseaseRepository;
-    private readonly IPestRepository pestRepository;
-    private readonly ICareRepository careRepository;*/
+
     public CropCommandService(ICropRepository cropRepository, ISowingRepository sowingRepository,
-        IUnitOfWork unitOfWork /*IDiseaseRepository diseaseRepository, IPestRepository pestRepository, ICareRepository careRepository*/)
+        IUnitOfWork unitOfWork)
     {
         this.cropRepository = cropRepository;
         this.sowingRepository = sowingRepository;
         this.unitOfWork = unitOfWork;
-        /*this.diseaseRepository = diseaseRepository;
-        this.pestRepository = pestRepository;
-        this.careRepository = careRepository;*/
     }
 
     public async Task<Crop> Handle(CreateCropCommand command)
     {
-        /*var diseases = command.Diseases.Select<int, Disease>(id => diseaseRepository.FindByIdAsync(id).Result ?? throw new Exception("Disease not found")).ToList();
-        var pests = command.Pests.Select<int, Pest>(id => pestRepository.FindByIdAsync(id).Result ?? throw new Exception("Pest not found")).ToList();
-        var cares = command.Cares.Select<int, Care>(id => careRepository.FindByIdAsync(id).Result ?? throw new Exception("Care not found")).ToList();*/
-
-        var crop = new Crop(command.Name, command.Description, command.ImageUrl /*diseases, pests, cares*/);
+        var crop = new Crop(command.Name, command.Description, command.ImageUrl);
 
         try
         {
@@ -78,7 +69,6 @@ public class CropCommandService : ICropCommandService
         var sowing = new Sowing
         {
             CropId = crop.Id
-            // Inicializa otras propiedades necesarias aquí
         };
 
         await sowingRepository.AddAsync(sowing);
