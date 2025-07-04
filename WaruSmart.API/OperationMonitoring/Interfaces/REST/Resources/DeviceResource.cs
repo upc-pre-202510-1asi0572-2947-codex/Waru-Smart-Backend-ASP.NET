@@ -8,5 +8,9 @@ public record DeviceResource(
     string Status,
     DateTime? LastSyncDate,
     string Location,
-    int SowingId
+    int SowingId,
+    double? Humidity,
+    double? Temperature,
+    double? SoilMoisture,
+    DateTime? TimeSinceLastSync
 );

@@ -44,7 +44,7 @@ public class Device
 
     public Device(CreateDeviceCommand command, Sowing sowing)
     {
-        DeviceId = "waru-smart-001";
+        DeviceId = command.DeviceId;
         Name = string.Concat(command.SensorType, '-', DeviceId );
         SensorType = (ESensorType)Enum.Parse(typeof(ESensorType), command.SensorType);
         Location = command.location;

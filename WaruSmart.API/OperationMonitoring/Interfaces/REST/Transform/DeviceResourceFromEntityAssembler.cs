@@ -15,7 +15,11 @@ public static class DeviceResourceFromEntityAssembler
             device.Status,
             device.LastSyncDate,
             device.Location,
-            device.SowingId
+            device.SowingId,
+            device.Humidity,
+            device.Temprature,
+            device.SoilMoisture,
+            device.LastSyncDate
         );
 
     }
