@@ -22,4 +22,11 @@ public class DeviceRepository(AppDbContext context) : BaseRepository<Device>(con
             .Include(d => d.Sowing)
             .ToListAsync();
     }
+
+    public Task<List<Device>> FindByDeviceIdAsync(string deviceIdValue)
+    {
+        return Context.Set<Device>()
+            .Where(d => d.DeviceId == deviceIdValue)
+            .ToListAsync();
+    }
 }

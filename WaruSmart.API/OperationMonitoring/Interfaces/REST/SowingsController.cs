@@ -123,10 +123,10 @@ public class SowingsController(ISowingCommandService sowingCommandService,
 
     
 
-    [HttpPut("{id}/phenologicalphase")]
-    public async Task<ActionResult> UpdatePhenologicalPhaseBySowingId(int id)
+    [HttpPut("{sowingId}/phenological-phase/{phase-id}")]
+    public async Task<ActionResult> UpdatePhenologicalPhaseBySowingId(int sowingId)
     {
-        var updatePhenologicalPhaseBySowingIdCommand = new UpdatePhenologicalPhaseBySowingIdCommand(id);
+        var updatePhenologicalPhaseBySowingIdCommand = new UpdatePhenologicalPhaseBySowingIdCommand(sowingId);
         var result = await sowingCommandService.Handle(updatePhenologicalPhaseBySowingIdCommand);
         if (result == null)
 
@@ -144,5 +144,9 @@ public class SowingsController(ISowingCommandService sowingCommandService,
         var resources = result.Select(SowingResourceFromEntityAssembler.ToResourceFromEntity);
         return Ok(resources);
     }
+    
+    /*
+     * Endpoint to get all sowings by a user with role of 'Cooperative'
+     */
  
 }

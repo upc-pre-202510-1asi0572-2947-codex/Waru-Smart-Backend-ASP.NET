@@ -33,6 +33,7 @@ public partial class Profile
         StartDate = DateTime.Now;
         EndDate = DateTime.Now.AddMonths(1);
         this.UserId = new UserId(userId);
+        this.ERole = Enum.TryParse<ERole>(command.Role, true, out var role) ? role : ERole.Agriculturist;
         //this.UserIdValue = this.UserId.Id;
     }
 
@@ -50,6 +51,8 @@ public partial class Profile
     public string EmailAddress => Email.Address;
     
     public UserId UserId { get;  set; }
+    
+    public ERole ERole { get; set; } 
     
     //public int UserIdValue { get; set; }
     

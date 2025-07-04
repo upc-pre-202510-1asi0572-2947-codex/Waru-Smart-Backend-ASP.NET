@@ -9,6 +9,7 @@
 
     <ItemGroup>
         <!-- Dependency Injection related packages -->
+        <PackageReference Include="Dapper" Version="2.1.66" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0"/>
         <!-- Entity Framework Core Database Persistence related packages -->
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.6" />
@@ -56,6 +57,7 @@
       <Folder Include="Forum\Interfaces\" />
       <Folder Include="IAM\Application\External\InboundServices\" />
       <Folder Include="Profiles\Application\External\" />
+      <Folder Include="ResourcesManagement\Interfaces\" />
     </ItemGroup>
 
 </Project>

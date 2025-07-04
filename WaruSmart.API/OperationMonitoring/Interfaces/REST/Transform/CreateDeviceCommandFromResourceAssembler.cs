@@ -8,6 +8,7 @@ public static class CreateDeviceCommandFromResourceAssembler
     public static CreateDeviceCommand ToCommandFromResource(CreateDeviceResource resource)
     {
         return new CreateDeviceCommand(
+            resource.DeviceId,
             resource.SensorType,
             resource.Location,
             resource.Status,

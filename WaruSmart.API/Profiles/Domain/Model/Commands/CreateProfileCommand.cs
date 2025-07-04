@@ -2,4 +2,6 @@
 
 public record CreateProfileCommand(string FirstName,
     string LastName, string Email,
-    int CityId, int SubscriptionId, int CountryId, int UserId);
+    int CityId, int SubscriptionId, int CountryId, int UserId
+    ,string Role
+    );

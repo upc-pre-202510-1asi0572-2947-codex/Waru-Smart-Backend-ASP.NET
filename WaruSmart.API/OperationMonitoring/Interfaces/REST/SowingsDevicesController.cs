@@ -61,7 +61,7 @@ public class SowingsDevicesController : ControllerBase
         return CreatedAtAction(nameof(GetAllDevicesBySowingId), new { sowingId }, result);
     }
     
-    [HttpGet("{sowingId}/devices/general-information")]
+    [HttpGet("{sowingId}/information-device")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetGeneralInformation(int sowingId)
