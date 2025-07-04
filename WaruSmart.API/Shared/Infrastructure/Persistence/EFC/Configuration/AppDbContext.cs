@@ -2,14 +2,14 @@
 using WaruSmart.API.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
 using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
 using Microsoft.EntityFrameworkCore;
+using WaruSmart.API.Crops.Domain.Model.Aggregates;
+using WaruSmart.API.Crops.Domain.Model.Entities;
 using WaruSmart.API.Forum.Domain.Model.Aggregates;
 using WaruSmart.API.Forum.Domain.Model.Entities;
 using WaruSmart.API.IAM.Domain.Model.Aggregates;
-using WaruSmart.API.OperationMonitoring.Domain.Model.Aggregates;
-using WaruSmart.API.OperationMonitoring.Domain.Model.Entities;
 using WaruSmart.API.Profiles.Domain.Model.Aggregates;
 using WaruSmart.API.Profiles.Domain.Model.Entities;
-using WaruSmart.API.ResourcesManagement.Domain.Model;
+using WaruSmart.API.Resources.Domain.Model;
 
 namespace WaruSmart.API.Shared.Infrastructure.Persistence.EFC.Configuration;
 
