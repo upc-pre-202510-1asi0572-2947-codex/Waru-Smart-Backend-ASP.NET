@@ -4,5 +4,6 @@ public enum ESensorType
 {
     Humidity,
     Temperature,
-    SoilMoisture
+    SoilMoisture,
+    Actuator
 }
