@@ -136,7 +136,7 @@ public class SowingsController(ISowingCommandService sowingCommandService,
         return Ok("Phenological phase updated successfully");
     }
     
-    [HttpGet("{userId}/user")]
+    [HttpGet("user/{userId}")]
     public async Task<ActionResult> GetSowingsByUserId(int userId)
     {
         var getSowingsByUserIdQuery = new GetAllSowingsByUserIdQuery(userId);
