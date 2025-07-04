@@ -1,6 +1,8 @@
 ﻿using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
 using WaruSmart.API.OperationMonitoring.Domain.Services;
+using WaruSmart.API.OperationMonitoring.Interfaces.REST.Resources;
+using WaruSmart.API.OperationMonitoring.Interfaces.REST.Transform;
 using WaruSmart.API.ResourcesManagement.Application.InboundServices;
 using WaruSmart.API.ResourcesManagement.Domain.Repositories;
 using WaruSmart.API.ResourcesManagement.Domain.Services;
@@ -25,6 +27,7 @@ public class MonitoringDevicesController : ControllerBase
         this.ioTDataRepository = ioTDataRepository;
     }
 
+    // TODO: Eliminate this endpoint if not needed, just to test the fog sync service
     [HttpPost("sync-fog-data")]
     public async Task<IActionResult> SyncFogData()
     {
@@ -46,5 +49,26 @@ public class MonitoringDevicesController : ControllerBase
         {
             return StatusCode(500, new { error = ex.Message });
         }
+    }
+    
+    /*
+     * Function to update the status of a device in a sowing.
+     */
+    [HttpPut("{sowingId}/devices/{deviceId}")]
+    public async Task<IActionResult> UpdateDeviceStatus(int sowingId, int deviceId, [FromBody] UpdateStatusDeviceResource resource)
+    {
+        var command = UpdateStatusDeviceCommandFromResourceAssembler.ToCommandFromResource(resource);
+        try
+        {
+            
+           var result = await deviceCommandService.Handle(command, deviceId);
+           var response = DeviceResourceFromEntityAssembler.ToResourceFromEntity(result);
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { error = ex.Message });
+        }
+
     }
 }
