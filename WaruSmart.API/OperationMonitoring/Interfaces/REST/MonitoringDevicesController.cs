@@ -1,6 +1,8 @@
 ﻿using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
+using WaruSmart.API.OperationMonitoring.Domain.Services;
 using WaruSmart.API.ResourcesManagement.Application.InboundServices;
+using WaruSmart.API.ResourcesManagement.Domain.Repositories;
 using WaruSmart.API.ResourcesManagement.Domain.Services;
 
 namespace WaruSmart.API.OperationMonitoring.Interfaces.REST;
@@ -11,10 +13,16 @@ namespace WaruSmart.API.OperationMonitoring.Interfaces.REST;
 public class MonitoringDevicesController : ControllerBase
 {
     private readonly IFogSyncService _fogSyncService;
+    private readonly IDeviceCommandService deviceCommandService;
+    private readonly IIoTDataRepository ioTDataRepository;
 
-    public MonitoringDevicesController(IFogSyncService fogSyncService)
+    public MonitoringDevicesController(IFogSyncService fogSyncService, 
+        IDeviceCommandService deviceCommandService,
+        IIoTDataRepository ioTDataRepository)
     {
         _fogSyncService = fogSyncService;
+        this.deviceCommandService = deviceCommandService;
+        this.ioTDataRepository = ioTDataRepository;
     }
 
     [HttpPost("sync-fog-data")]
@@ -23,6 +31,15 @@ public class MonitoringDevicesController : ControllerBase
         try
         {
             await _fogSyncService.SyncFogDataAsync();
+            // After that execute the SyncDeviceWithIoTData method
+            //First, we need to get the IoT data from the repository
+            var iotDataList = await ioTDataRepository.GetAllDataAsync();
+            if (iotDataList == null || !iotDataList.Any())
+            {
+                return NotFound(new { message = "No IoT data found to sync." });
+            }
+            // Now we can sync the devices with the IoT data
+            await deviceCommandService.SyncDeviceWithIoTData(iotDataList);
             return Ok(new { message = "Fog data synchronized successfully." });
         }
         catch (Exception ex)
