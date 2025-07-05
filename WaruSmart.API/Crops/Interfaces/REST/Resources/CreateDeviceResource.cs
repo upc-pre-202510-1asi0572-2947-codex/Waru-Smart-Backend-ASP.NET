@@ -4,6 +4,5 @@ public record CreateDeviceResource(
     string DeviceId,
     string DeviceType,
     string Location,
-    string Status,
-    int SowingId
+    string Status
 );

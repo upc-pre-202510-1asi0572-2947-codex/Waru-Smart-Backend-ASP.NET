@@ -48,7 +48,7 @@ public class SowingsDevicesController : ControllerBase
             return BadRequest(ModelState);
         }
 
-        var command = CreateDeviceCommandFromResourceAssembler.ToCommandFromResource(resource);
+        var command = CreateDeviceCommandFromResourceAssembler.ToCommandFromResource(resource, sowingId);
         var device = await deviceCommandService.Handle(command);
 
         if (device == null)
