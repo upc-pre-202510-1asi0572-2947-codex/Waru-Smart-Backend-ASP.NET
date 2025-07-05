@@ -9,7 +9,7 @@ public static class CreateDeviceCommandFromResourceAssembler
     {
         return new CreateDeviceCommand(
             resource.DeviceId,
-            resource.SensorType,
+            resource.DeviceType,
             resource.Location,
             resource.Status,
             resource.SowingId

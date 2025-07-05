@@ -3,7 +3,7 @@
 public record DeviceResource(
     int Id,
     string Name,
-    string SensorType,
+    string DeviceType,
     string DeviceId,
     string Status,
     DateTime? LastSyncDate,

@@ -9,7 +9,7 @@ public class Device
 {
     public int Id { get; private set; }
     public string Name { get; private set; }
-    public ESensorType SensorType { get;  set; }
+    public EDeviceType DeviceType { get;  set; }
     public string DeviceId { get; private set; }
     public string Status { get; private set; } //TODO: This should be an enum
     public DateTime? LastSyncDate { get; set; }
@@ -45,8 +45,8 @@ public class Device
     public Device(CreateDeviceCommand command, Sowing sowing)
     {
         DeviceId = command.DeviceId;
-        Name = string.Concat(command.SensorType, '-', DeviceId );
-        SensorType = (ESensorType)Enum.Parse(typeof(ESensorType), command.SensorType);
+        Name = string.Concat(command.DeviceType, '-', DeviceId );
+        DeviceType = (EDeviceType)Enum.Parse(typeof(EDeviceType), command.DeviceType);
         Location = command.location;
         Status = command.status;
         LastSyncDate = DateTime.Now;

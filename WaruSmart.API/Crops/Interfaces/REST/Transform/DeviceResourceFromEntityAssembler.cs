@@ -10,7 +10,7 @@ public static class DeviceResourceFromEntityAssembler
         return new DeviceResource(
             device.Id,
             device.Name,
-            device.SensorType.ToString(),
+            device.DeviceType.ToString(),
             device.DeviceId,
             device.Status,
             device.LastSyncDate,

@@ -2,7 +2,7 @@
 
 public record CreateDeviceResource( 
     string DeviceId,
-    string SensorType,
+    string DeviceType,
     string Location,
     string Status,
     int SowingId

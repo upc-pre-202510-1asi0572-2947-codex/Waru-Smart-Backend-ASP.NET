@@ -2,7 +2,7 @@
 
 public record CreateDeviceCommand(
     string DeviceId,
-    string SensorType,
+    string DeviceType,
     string location,
     string status,
     int sowingId
