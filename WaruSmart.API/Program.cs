@@ -27,6 +27,7 @@ using  WaruSmart.API.Shared.Infrastructure.Persistence.EFC.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using WaruSmart.API.Crops.Application.CommandServices;
+using WaruSmart.API.Crops.Application.EventServices;
 using WaruSmart.API.Crops.Application.QueryServices;
 using WaruSmart.API.Crops.Domain.Repositories;
 using WaruSmart.API.Crops.Domain.Services;
@@ -204,6 +205,8 @@ builder.Services.AddScoped<IProductsBySowingRepository, ProductsBySowingReposito
 
 builder.Services.AddScoped<IIoTDataRepository, IoTDataRepository>();
 builder.Services.AddScoped<IFogSyncService, FogSyncService>();
+
+builder.Services.AddHttpClient<IDeviceEventService, DeviceEventService>();
 
 var app = builder.Build();
 

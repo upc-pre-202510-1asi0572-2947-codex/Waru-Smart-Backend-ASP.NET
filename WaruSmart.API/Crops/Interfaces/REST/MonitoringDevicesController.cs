@@ -1,6 +1,7 @@
 ﻿using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
 using WaruSmart.API.Crops.Domain.Services;
+using WaruSmart.API.Crops.Domain.Model.Events;
 using WaruSmart.API.Crops.Interfaces.REST.Resources;
 using WaruSmart.API.Crops.Interfaces.REST.Transform;
 using WaruSmart.API.Resources.Domain.Repositories;
@@ -16,14 +17,17 @@ public class MonitoringDevicesController : ControllerBase
     private readonly IFogSyncService _fogSyncService;
     private readonly IDeviceCommandService deviceCommandService;
     private readonly IIoTDataRepository ioTDataRepository;
+    private readonly IDeviceEventService deviceEventService;
 
     public MonitoringDevicesController(IFogSyncService fogSyncService, 
         IDeviceCommandService deviceCommandService,
-        IIoTDataRepository ioTDataRepository)
+        IIoTDataRepository ioTDataRepository,
+        IDeviceEventService deviceEventService)
     {
         _fogSyncService = fogSyncService;
         this.deviceCommandService = deviceCommandService;
         this.ioTDataRepository = ioTDataRepository;
+        this.deviceEventService = deviceEventService;
     }
 
     // TODO: Eliminate this endpoint if not needed, just to test the fog sync service
@@ -59,10 +63,19 @@ public class MonitoringDevicesController : ControllerBase
         var command = UpdateStatusDeviceCommandFromResourceAssembler.ToCommandFromResource(resource);
         try
         {
-            
-           var result = await deviceCommandService.Handle(command, deviceId);
-           var response = DeviceResourceFromEntityAssembler.ToResourceFromEntity(result);
-            return Ok(response);
+            var result = await deviceCommandService.Handle(command, deviceId);
+            //After tha succes, I need to launch the event to update the status of the device
+            var updateEvent = new UpdateStatusDeviceEvent(deviceId, resource.Status);
+            var eventResult = await deviceEventService.Handle(updateEvent);
+            var response = DeviceResourceFromEntityAssembler.ToResourceFromEntity(result);
+            if (eventResult)
+            {
+                return Ok(new { message = "Updated and event dispatched", device = response });
+            }
+            else
+            {
+                return Ok(new { message = "Updated but not dispatched", device = response });
+            }
         }
         catch (Exception ex)
         {
