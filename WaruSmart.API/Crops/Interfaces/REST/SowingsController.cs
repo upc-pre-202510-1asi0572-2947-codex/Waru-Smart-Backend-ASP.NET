@@ -1,10 +1,5 @@
 ﻿using System.Net.Mime;
-using WaruSmart.API.Crops.Domain.Model.Entities;
-using WaruSmart.API.Shared.Infrastructure.Persistence.EFC.Configuration;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using Swashbuckle.AspNetCore.Annotations;
 using WaruSmart.API.Crops.Domain.Model.Commands;
 using WaruSmart.API.Crops.Domain.Model.Queries;
 using WaruSmart.API.Crops.Domain.Services;
@@ -128,10 +123,10 @@ public class SowingsController(ISowingCommandService sowingCommandService,
 
     
 
-    [HttpPut("{id}/phenologicalphase")]
-    public async Task<ActionResult> UpdatePhenologicalPhaseBySowingId(int id)
+    [HttpPut("{sowingId}/phenological-phase/{phase-id}")]
+    public async Task<ActionResult> UpdatePhenologicalPhaseBySowingId(int sowingId)
     {
-        var updatePhenologicalPhaseBySowingIdCommand = new UpdatePhenologicalPhaseBySowingIdCommand(id);
+        var updatePhenologicalPhaseBySowingIdCommand = new UpdatePhenologicalPhaseBySowingIdCommand(sowingId);
         var result = await sowingCommandService.Handle(updatePhenologicalPhaseBySowingIdCommand);
         if (result == null)
 
@@ -141,7 +136,7 @@ public class SowingsController(ISowingCommandService sowingCommandService,
         return Ok("Phenological phase updated successfully");
     }
     
-    [HttpGet("{userId}/user")]
+    [HttpGet("user/{userId}")]
     public async Task<ActionResult> GetSowingsByUserId(int userId)
     {
         var getSowingsByUserIdQuery = new GetAllSowingsByUserIdQuery(userId);
@@ -149,5 +144,9 @@ public class SowingsController(ISowingCommandService sowingCommandService,
         var resources = result.Select(SowingResourceFromEntityAssembler.ToResourceFromEntity);
         return Ok(resources);
     }
+    
+    /*
+     * Endpoint to get all sowings by a user with role of 'Cooperative'
+     */
  
 }

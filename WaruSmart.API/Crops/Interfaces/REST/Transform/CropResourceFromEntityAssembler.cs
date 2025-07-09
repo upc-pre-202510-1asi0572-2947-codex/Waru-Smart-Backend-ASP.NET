@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using WaruSmart.API.Crops.Domain.Model.Aggregates;
+﻿using WaruSmart.API.Crops.Domain.Model.Aggregates;
 using WaruSmart.API.Crops.Interfaces.REST.Resources;
 
 namespace WaruSmart.API.Crops.Interfaces.REST.Transform;

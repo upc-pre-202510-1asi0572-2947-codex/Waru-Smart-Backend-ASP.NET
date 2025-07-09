@@ -14,9 +14,8 @@ public static class GeneralInformationDeviceResourceFromListEntitiesAssembler
             QuantityActiveDevices: devices.Count(d => d.Status == "Active"),
             QuantityInactiveDevices: devices.Count(d => d.Status == "Inactive"),
             QuantityDisconnectedDevices: devices.Count(d => d.Status == "Disconnected"),
-            QuantityHumidityDevices: devices.Count(d => d.SensorType == ESensorType.Humidity),
-            QuantityTemperatureDevices: devices.Count(d => d.SensorType == ESensorType.Temperature),
-            QuantitySoilMoistureDevices: devices.Count(d => d.SensorType == ESensorType.SoilMoisture)
+            QuantitySensorDevices: devices.Count(d => d.DeviceType == EDeviceType.Sensor),
+            QuantityActuatorDevices: devices.Count(d => d.DeviceType == EDeviceType.Actuator)
         );
     }
 }

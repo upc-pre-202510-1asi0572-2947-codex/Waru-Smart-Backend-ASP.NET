@@ -1,6 +1,5 @@
 ﻿using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
-using WaruSmart.API.Crops.Domain.Model.Commands;
 using WaruSmart.API.Crops.Domain.Model.Queries;
 using WaruSmart.API.Crops.Domain.Services;
 using WaruSmart.API.Crops.Interfaces.REST.Resources;
@@ -49,7 +48,7 @@ public class SowingsDevicesController : ControllerBase
             return BadRequest(ModelState);
         }
 
-        var command = CreateDeviceCommandFromResourceAssembler.ToCommandFromResource(resource);
+        var command = CreateDeviceCommandFromResourceAssembler.ToCommandFromResource(resource, sowingId);
         var device = await deviceCommandService.Handle(command);
 
         if (device == null)
@@ -62,7 +61,7 @@ public class SowingsDevicesController : ControllerBase
         return CreatedAtAction(nameof(GetAllDevicesBySowingId), new { sowingId }, result);
     }
     
-    [HttpGet("{sowingId}/devices/general-information")]
+    [HttpGet("{sowingId}/indicators")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetGeneralInformation(int sowingId)

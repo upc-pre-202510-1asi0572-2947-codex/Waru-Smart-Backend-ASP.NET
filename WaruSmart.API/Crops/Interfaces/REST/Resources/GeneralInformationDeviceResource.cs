@@ -6,7 +6,6 @@ public record GeneralInformationDeviceResource(
     int QuantityActiveDevices,
     int QuantityInactiveDevices,
     int QuantityDisconnectedDevices,
-    int QuantityHumidityDevices,
-    int QuantityTemperatureDevices,
-    int QuantitySoilMoistureDevices
+    int QuantitySensorDevices,
+    int QuantityActuatorDevices
     );

@@ -2,6 +2,7 @@
 using WaruSmart.API.Crops.Domain.Model.Entities;
 using WaruSmart.API.Crops.Domain.Repositories;
 using WaruSmart.API.Crops.Domain.Services;
+using WaruSmart.API.Resources.Domain.Model;
 using WaruSmart.API.Shared.Domain.Repositories;
 
 namespace WaruSmart.API.Crops.Application.CommandServices;
@@ -52,5 +53,29 @@ public class DeviceCommandService(IDeviceRepository deviceRepository, IUnitOfWor
             Console.WriteLine(e);
             throw;
         }
+    }
+    
+    public async Task SyncDeviceWithIoTData(IEnumerable<IoTData> iotDataList)
+    {
+        foreach (var iotData in iotDataList)
+        {
+            var device = await deviceRepository.FindByDeviceIdAsync(iotData.DeviceIdValue);
+            if (device == null || !device.Any())
+            {
+                //Do nothing if no device found
+            }
+            else
+            {
+                // If device exists, update it with the IoT data
+                var existingDevice = device.FirstOrDefault();
+                if (existingDevice != null)
+                {
+                    existingDevice.UpdateSensorData(iotData);
+                    deviceRepository.Update(existingDevice);
+                }
+            }
+        }
+
+        await unitOfWork.CompleteAsync();
     }
 }

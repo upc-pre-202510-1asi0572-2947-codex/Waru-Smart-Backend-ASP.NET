@@ -5,13 +5,14 @@ namespace WaruSmart.API.Crops.Interfaces.REST.Transform;
 
 public static class CreateDeviceCommandFromResourceAssembler
 {
-    public static CreateDeviceCommand ToCommandFromResource(CreateDeviceResource resource)
+    public static CreateDeviceCommand ToCommandFromResource(CreateDeviceResource resource, int sowingId)
     {
         return new CreateDeviceCommand(
-            resource.SensorType,
+            resource.DeviceId,
+            resource.DeviceType,
             resource.Location,
             resource.Status,
-            resource.SowingId
+            sowingId
         );
     }
 }

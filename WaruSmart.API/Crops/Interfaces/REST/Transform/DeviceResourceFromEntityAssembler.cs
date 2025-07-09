@@ -10,12 +10,16 @@ public static class DeviceResourceFromEntityAssembler
         return new DeviceResource(
             device.Id,
             device.Name,
-            device.SensorType.ToString(),
+            device.DeviceType.ToString(),
             device.DeviceId,
             device.Status,
             device.LastSyncDate,
             device.Location,
-            device.SowingId
+            device.SowingId,
+            device.Humidity,
+            device.Temprature,
+            device.SoilMoisture,
+            device.LastSyncDate
         );
 
     }

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using WaruSmart.API.Crops.Domain.Model.Aggregates;
+﻿using WaruSmart.API.Crops.Domain.Model.Aggregates;
 using WaruSmart.API.Crops.Domain.Model.Commands;
 using WaruSmart.API.Crops.Domain.Model.ValueObjects;
 

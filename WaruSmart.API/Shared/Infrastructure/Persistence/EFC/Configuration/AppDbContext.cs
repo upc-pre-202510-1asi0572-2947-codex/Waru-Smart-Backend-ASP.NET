@@ -9,6 +9,7 @@ using WaruSmart.API.Forum.Domain.Model.Entities;
 using WaruSmart.API.IAM.Domain.Model.Aggregates;
 using WaruSmart.API.Profiles.Domain.Model.Aggregates;
 using WaruSmart.API.Profiles.Domain.Model.Entities;
+using WaruSmart.API.Resources.Domain.Model;
 
 namespace WaruSmart.API.Shared.Infrastructure.Persistence.EFC.Configuration;
 
@@ -26,7 +27,12 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     {
         base.OnModelCreating(builder);
         
-  
+        builder.Entity<IoTData>().Property(i => i.DeviceIdValue).IsRequired(true);
+        builder.Entity<IoTData>().Property(i => i.Humidity).IsRequired(false);
+        builder.Entity<IoTData>().Property(i => i.TemperatureValue).IsRequired(false);
+        builder.Entity<IoTData>().Property(i => i.Timestamp).IsRequired(false);
+        builder.Entity<IoTData>().Property(i => i.SoilMoistureValue).IsRequired(false);
+        builder.Entity<IoTData>().Property(i => i.Zone).IsRequired(false);
     //Forum
         builder.Entity<Category>().HasKey(c => c.Id);
         builder.Entity<Category>().Property(c => c.Id).IsRequired().ValueGeneratedOnAdd();
@@ -174,6 +180,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
                 e.Property(a => a.Address).HasColumnName("EmailAddress");
             });
         builder.Entity<Profile>().Property(p => p.SubscriptionId).IsRequired();
+        builder.Entity<Profile>().Property(p => p.ERole).HasConversion<string>().IsRequired();
         builder.Entity<Subscription>().Property(p=>p.Description).IsRequired();
         builder.Entity<Subscription>().Property(p=>p.Price).IsRequired();
         builder.Entity<Subscription>().Property(p=>p.Range).IsRequired();

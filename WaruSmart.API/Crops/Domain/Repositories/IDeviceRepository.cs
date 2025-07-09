@@ -19,4 +19,6 @@ public interface IDeviceRepository:IBaseRepository<Device> {
      * Method of the interface that allows to search all devices
      */
     Task<IEnumerable<Device>> FindAllAsync();
+    
+    Task<List<Device>> FindByDeviceIdAsync(string deviceIdValue); 
 }

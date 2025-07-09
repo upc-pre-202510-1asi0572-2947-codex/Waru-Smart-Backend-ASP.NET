@@ -1,6 +1,4 @@
-﻿using WaruSmart.API.Crops.Domain.Model.Entities;
-
-namespace WaruSmart.API.Crops.Domain.Model.Commands;
+﻿namespace WaruSmart.API.Crops.Domain.Model.Commands;
 
 
 
