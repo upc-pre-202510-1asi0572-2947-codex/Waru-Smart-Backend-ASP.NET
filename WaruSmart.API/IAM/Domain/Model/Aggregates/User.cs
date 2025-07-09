@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using Mysqlx.Datatypes;
 using WaruSmart.API.Crops.Domain.Model.Aggregates;
 using WaruSmart.API.IAM.Domain.Model.ValueObjects;
 

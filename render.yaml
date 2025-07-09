@@ -1,0 +1,12 @@
+﻿services:
+  - type: web
+    name: warusmart-api
+    env: docker
+    plan: free
+    dockerfilePath: Dockerfile
+    autoDeploy: true
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: ConnectionStrings__DefaultConnection
+        value: Host=dpg-d1nehremcj7s73f3o7sg-a.oregon-postgres.render.com;Port=5432;Database=warudb;Username=codex;Password=NimSq11hgtAfBUY01In3ktgSNMB1wA2Q;

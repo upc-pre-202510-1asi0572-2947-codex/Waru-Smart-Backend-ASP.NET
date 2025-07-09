@@ -56,12 +56,12 @@ builder.Services.AddDbContext<AppDbContext>(
     {
         if (connectionString != null)
             if (builder.Environment.IsDevelopment())
-                options.UseMySQL(connectionString)
+                options.UseNpgsql(connectionString)
                     .LogTo(Console.WriteLine, LogLevel.Information)
                     .EnableSensitiveDataLogging()
                     .EnableDetailedErrors();
             else if (builder.Environment.IsProduction())
-                options.UseMySQL(connectionString)
+                options.UseNpgsql(connectionString)
                     .LogTo(Console.WriteLine, LogLevel.Error)
                     .EnableDetailedErrors();    
     });
