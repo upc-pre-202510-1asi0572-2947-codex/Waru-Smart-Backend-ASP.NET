@@ -49,7 +49,7 @@ public class Device
         DeviceType = (EDeviceType)Enum.Parse(typeof(EDeviceType), command.DeviceType);
         Location = command.location;
         Status = command.status;
-        LastSyncDate = DateTime.Now;
+        LastSyncDate = DateTime.UtcNow;
         SowingId = command.sowingId;
         Sowing = sowing;
         Humidity = 0;

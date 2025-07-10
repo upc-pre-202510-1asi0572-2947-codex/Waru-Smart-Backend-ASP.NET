@@ -30,8 +30,8 @@ public partial class Profile
         CityId = command.CityId;
         SubscriptionId = command.SubscriptionId;
         CountryId = command.CountryId;
-        StartDate = DateTime.Now;
-        EndDate = DateTime.Now.AddMonths(1);
+        StartDate = DateTime.UtcNow;
+        EndDate = DateTime.UtcNow.AddMonths(1);
         this.UserId = new UserId(userId);
         this.ERole = Enum.TryParse<ERole>(command.Role, true, out var role) ? role : ERole.Agriculturist;
         //this.UserIdValue = this.UserId.Id;

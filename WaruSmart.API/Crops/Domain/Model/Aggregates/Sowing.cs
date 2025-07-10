@@ -30,7 +30,7 @@ public partial class Sowing
     
     public Sowing()
     {
-        this.StartDate = DateTime.Now;
+        this.StartDate = DateTime.UtcNow;
         this.EndDate = DateTime.MinValue;
         this.AreaLand = 0;
         this.Status = false;
@@ -40,7 +40,7 @@ public partial class Sowing
 
     public Sowing(CreateSowingCommand command)
     {
-        this.StartDate = DateTime.Now;
+        this.StartDate = DateTime.UtcNow;
         this.EndDate = this.StartDate.AddMonths(6);
         this.AreaLand = command.AreaLand;
         this.PhenologicalPhase = EPhenologicalPhase.Germination;

@@ -25,7 +25,7 @@ public class ProductsBySowing
         SowingId = command.SowingId;
         ProductId = command.ProductId;
         Quantity = command.Quantity;
-        UseDate = DateTime.Now; 
+        UseDate = DateTime.UtcNow; 
     }
     
     

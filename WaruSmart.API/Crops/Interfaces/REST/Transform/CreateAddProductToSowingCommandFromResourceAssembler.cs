@@ -11,7 +11,7 @@ public class CreateAddProductToSowingCommandFromResourceAssembler
             resource.SowingId,
             resource.ProductId,
             resource.Quantity,
-            DateTime.Now
+            DateTime.UtcNow
         );
     }
 }
