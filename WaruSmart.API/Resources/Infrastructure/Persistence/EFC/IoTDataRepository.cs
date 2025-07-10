@@ -53,7 +53,7 @@ public class IoTDataRepository : BaseRepository<IoTData>, IIoTDataRepository
     private async Task<IEnumerable<IoTData>> GetFogDBData()
     {
         // Cambia la cadena de conexión para usar el host y puerto de ngrok
-        var _connectionString = "server=0.tcp.sa.ngrok.io;port=11803;user=root;password=12345678;database=fog_db;";
+        var _connectionString = "server=0.tcp.sa.ngrok.io;port=14130;user=root;password=12345678;database=fog_db;";
         using var connection = new MySqlConnection(_connectionString);
         var query = @"
         SELECT 
