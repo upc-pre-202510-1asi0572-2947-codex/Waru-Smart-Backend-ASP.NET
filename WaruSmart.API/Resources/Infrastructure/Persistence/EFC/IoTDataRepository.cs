@@ -52,8 +52,8 @@ public class IoTDataRepository : BaseRepository<IoTData>, IIoTDataRepository
 
     private async Task<IEnumerable<IoTData>> GetFogDBData()
     {
-        //TODO: Refactor this connection string to use a configuration file or environment variable
-        var _connectionString = "server=localhost;port=3306;user=root;password=12345678;database=fog_db;";
+        // Cambia la cadena de conexión para usar el host y puerto de ngrok
+        var _connectionString = "server=0.tcp.sa.ngrok.io;port=11803;user=root;password=12345678;database=fog_db;";
         using var connection = new MySqlConnection(_connectionString);
         var query = @"
         SELECT 
@@ -72,6 +72,12 @@ public class IoTDataRepository : BaseRepository<IoTData>, IIoTDataRepository
     {
         foreach (var data in fogData)
         {
+            // Forzar Timestamp a UTC si tiene valor
+            if (data.Timestamp.HasValue && data.Timestamp.Value.Kind != DateTimeKind.Utc)
+            {
+                data.Timestamp = DateTime.SpecifyKind(data.Timestamp.Value, DateTimeKind.Utc);
+            }
+
             var exists = await _context.Set<IoTData>()
                 .AnyAsync(d => d.Id == data.Id);
 
