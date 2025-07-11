@@ -209,7 +209,7 @@ builder.Services.AddScoped<IFogSyncService, FogSyncService>();
 // Analytics Bounded Context Dependency Injections
 builder.Services.AddScoped<WaruSmart.API.Analytics.Domain.Repositories.IAnalyticsRepository, WaruSmart.API.Analytics.Infrastructure.Persistence.AnalyticsRepository>();
 builder.Services.AddScoped<WaruSmart.API.Analytics.Application.QueryServices.IAnalyticsQueryService, WaruSmart.API.Analytics.Application.QueryServices.AnalyticsQueryService>();
-
+builder.Services.AddHostedService<WaruSmart.API.Resources.Infrastructure.Persistence.EFC.FogSyncBackgroundService>();
 builder.Services.AddHttpClient<IDeviceEventService, DeviceEventService>();
 
 var app = builder.Build();

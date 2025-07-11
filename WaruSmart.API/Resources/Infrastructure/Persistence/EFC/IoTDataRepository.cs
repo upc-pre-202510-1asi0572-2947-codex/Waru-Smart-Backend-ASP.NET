@@ -46,28 +46,52 @@ public class IoTDataRepository : BaseRepository<IoTData>, IIoTDataRepository
     
     public async Task FogAsync()
     {
-        var fogData = await GetFogDBData();
-        await UpdateLocalDatabaseAsync(fogData);
+        try
+        {
+            var fogData = await GetFogDBData();
+            await UpdateLocalDatabaseAsync(fogData);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"[FogSync] Error: {ex.Message}");
+        }
     }
 
     private async Task<IEnumerable<IoTData>> GetFogDBData()
     {
         // Lee la cadena de conexión desde la variable de entorno FOG_DB_CONNECTION, si no existe usa la de desarrollo local
-        var _connectionString = "server=35.192.84.109;port=3306;user=fromzeroroot;password=webmasterdbmysqlPassword!12@3!;database=fog_db;";
-        using var connection = new MySqlConnection(_connectionString);
-        var query = @"
-                SELECT 
-            id,
-            device_id_value AS DeviceIdValue,
-            humidity_value as Humidity,
-            temperature_value AS TemperatureValue,
-            timestamp as Timestamp,
-            soil_moisture_value AS SoilMoistureValue,
-            zone as Zone
-        FROM fog_db.sensor_data
-        ORDER BY timestamp DESC
-        LIMIT 10";
-        return await connection.QueryAsync<IoTData>(query);
+        var _connectionString = Environment.GetEnvironmentVariable("FOG_DB_CONNECTION") ?? "server=35.192.84.109;port=3306;user=fromzeroroot;password=webmasterdbmysqlPassword!12@3!;database=fog_db;";
+        int maxRetries = 3;
+        int delayMs = 2000;
+        for (int attempt = 1; attempt <= maxRetries; attempt++)
+        {
+            try
+            {
+                using var connection = new MySqlConnection(_connectionString);
+                await connection.OpenAsync();
+                var query = @"
+                    SELECT 
+                        id,
+                        device_id_value AS DeviceIdValue,
+                        humidity_value as Humidity,
+                        temperature_value AS TemperatureValue,
+                        timestamp as Timestamp,
+                        soil_moisture_value AS SoilMoistureValue,
+                        zone as Zone
+                    FROM fog_db.sensor_data
+                    ORDER BY timestamp DESC
+                    LIMIT 10";
+                return await connection.QueryAsync<IoTData>(query);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[FogDB] Error intento {attempt}: {ex.Message}");
+                if (attempt == maxRetries)
+                    throw;
+                await Task.Delay(delayMs);
+            }
+        }
+        return Enumerable.Empty<IoTData>();
     }
 
     private async Task UpdateLocalDatabaseAsync(IEnumerable<IoTData> fogData)
