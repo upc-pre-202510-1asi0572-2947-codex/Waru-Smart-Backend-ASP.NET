@@ -30,7 +30,7 @@ public class Control
         SowingCondition = command.SowingCondition;
         StemCondition = command.StemCondition;
         SoilMoisture = command.SoilMoisture;
-        Date = DateTime.Now;
+        Date = DateTime.UtcNow;
     }
     
 }
