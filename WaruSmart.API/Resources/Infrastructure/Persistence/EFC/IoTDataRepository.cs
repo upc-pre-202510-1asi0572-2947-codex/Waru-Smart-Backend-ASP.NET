@@ -53,7 +53,7 @@ public class IoTDataRepository : BaseRepository<IoTData>, IIoTDataRepository
     private async Task<IEnumerable<IoTData>> GetFogDBData()
     {
         // Lee la cadena de conexión desde la variable de entorno FOG_DB_CONNECTION, si no existe usa la de desarrollo local
-        var _connectionString = Environment.GetEnvironmentVariable("FOG_DB_CONNECTION") ?? "server=localhost;port=3306;user=root;password=12345678;database=fog_db;";
+        var _connectionString = "server=35.192.84.109;port=3306;user=fromzeroroot;password=webmasterdbmysqlPassword!12@3!;database=fog_db;";
         using var connection = new MySqlConnection(_connectionString);
         var query = @"
                 SELECT 
