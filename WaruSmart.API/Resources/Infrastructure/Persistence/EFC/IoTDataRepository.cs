@@ -52,11 +52,11 @@ public class IoTDataRepository : BaseRepository<IoTData>, IIoTDataRepository
 
     private async Task<IEnumerable<IoTData>> GetFogDBData()
     {
-        // Cambia la cadena de conexión para usar el host y puerto de ngrok
-        var _connectionString = "server=0.tcp.sa.ngrok.io;port=14130;user=root;password=12345678;database=fog_db;";
+        // Lee la cadena de conexión desde la variable de entorno FOG_DB_CONNECTION, si no existe usa la de desarrollo local
+        var _connectionString = Environment.GetEnvironmentVariable("FOG_DB_CONNECTION") ?? "server=localhost;port=3306;user=root;password=12345678;database=fog_db;";
         using var connection = new MySqlConnection(_connectionString);
         var query = @"
-        SELECT 
+                SELECT 
             id,
             device_id_value AS DeviceIdValue,
             humidity_value as Humidity,
@@ -64,7 +64,9 @@ public class IoTDataRepository : BaseRepository<IoTData>, IIoTDataRepository
             timestamp as Timestamp,
             soil_moisture_value AS SoilMoistureValue,
             zone as Zone
-        FROM fog_db.sensor_data";
+        FROM fog_db.sensor_data
+        ORDER BY timestamp DESC
+        LIMIT 10";
         return await connection.QueryAsync<IoTData>(query);
     }
 
